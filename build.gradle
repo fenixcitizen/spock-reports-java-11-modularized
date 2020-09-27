@@ -1,0 +1,33 @@
+plugins {
+    id 'groovy'
+    id 'org.javamodularity.moduleplugin' version '1.7.0' apply false
+}
+
+repositories {
+    jcenter()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+apply plugin: "org.javamodularity.moduleplugin"
+
+modularity.patchModule('junit', 'groovy-xml-2.5.4.jar')
+modularity.patchModule('junit', 'groovy-2.5.4.jar')
+modularity.patchModule('junit', 'groovy-nio-2.5.4.jar')
+modularity.patchModule('junit', 'groovy-sql-2.5.4.jar')
+modularity.patchModule('junit', 'groovy-test-2.5.4.jar')
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    testImplementation( 'com.athaydes:spock-reports:1.7.1' ) {
+        transitive = false
+    }
+    testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5'
+    testImplementation 'org.slf4j:slf4j-api:1.7.30'
+    testRuntimeClasspath 'org.slf4j:slf4j-simple:1.7.30'
+}

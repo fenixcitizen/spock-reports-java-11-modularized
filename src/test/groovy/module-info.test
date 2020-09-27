@@ -1,0 +1,6 @@
+--add-modules
+  com.test.example
+--add-reads
+  com.test.example=junit
+--add-opens
+  com.test.example/com.test.example=org.junit.platform.commons
